@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect | Dashboard</title>
+    
+    <!-- Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body class="theme-light">
+    <!-- Subtle Background Elements -->
+    <div class="bg-gradient-mesh"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="assets/logo.png" alt="Dhirubhai Ambani University Logo" class="logo-img">
+                <span>CampusConnect</span>
+            </div>
+            <button class="mobile-close" id="sidebar-close"><i data-lucide="x"></i></button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+            <a href="#" class="nav-item"><i data-lucide="home"></i> Home</a>
+            <a href="#" class="nav-item"><i data-lucide="layers"></i> Services</a>
+            <a href="#" class="nav-item has-badge">
+                <i data-lucide="bell"></i> Notifications
+                <span class="badge" id="nav-notif-badge">3</span>
+            </a>
+            <a href="#" class="nav-item"><i data-lucide="user"></i> Profile</a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-switch" aria-label="Toggle Theme">
+                <i data-lucide="sun" class="light-icon"></i>
+                <i data-lucide="moon" class="dark-icon"></i>
+                <span class="theme-text">Toggle Theme</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Navigation Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="mobile-menu-toggle" id="mobile-menu-btn">
+                    <i data-lucide="menu"></i>
+                </button>
+                <div class="search-container">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="global-search" placeholder="Search services, courses, or events..." aria-label="Search">
+                </div>
+            </div>
+            
+            <div class="topbar-right">
+                <div class="time-display" id="current-datetime">Loading time...</div>
+                
+                <div class="profile-dropdown">
+                    <div class="avatar profile-ac">AC</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-container">
+            
+            <div id="view-dashboard" class="view-section">
+                <!-- Welcome Section -->
+            <section class="welcome-section fade-in">
+                <div class="welcome-text">
+                    <h1 class="page-title"><span id="dynamic-greeting">Good day</span>, Alex.</h1>
+                    <p class="caption">ID: 2190345 &bull; Dept: Computer Science &bull; Sem: 5</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn btn-primary"><i data-lucide="download"></i> Download Transcript</button>
+                </div>
+            </section>
+
+            <!-- Summary Cards -->
+            <section class="summary-grid fade-in stagger-1" id="summary-section">
+                <div class="card stat-card">
+                    <div class="stat-icon"><i data-lucide="check-circle"></i></div>
+                    <div class="stat-info">
+                        <h3>Attendance</h3>
+                        <p class="stat-value">85%</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i data-lucide="book-open"></i></div>
+                    <div class="stat-info">
+                        <h3>Courses</h3>
+                        <p class="stat-value">6</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i data-lucide="file-text"></i></div>
+                    <div class="stat-info">
+                        <h3>Assignments</h3>
+                        <p class="stat-value">2 Due</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i data-lucide="calendar"></i></div>
+                    <div class="stat-info">
+                        <h3>Exams</h3>
+                        <p class="stat-value">Next in 12d</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i data-lucide="award"></i></div>
+                    <div class="stat-info">
+                        <h3>CGPA</h3>
+                        <p class="stat-value">3.82</p>
+                    </div>
+                </div>
+                <div class="card stat-card stat-actionable" id="notif-card">
+                    <div class="stat-icon"><i data-lucide="bell-ring"></i></div>
+                    <div class="stat-info">
+                        <h3>Notifications</h3>
+                        <p class="stat-value"><span id="card-notif-badge">3</span> New</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Layout Grid -->
+            <div class="bento-grid fade-in stagger-2">
+                
+                <!-- Today's Timetable -->
+                <section class="card bento-item span-2 searchable-section" data-title="Timetable">
+                    <div class="card-header">
+                        <h2>Today's Timetable</h2>
+                        <button class="btn btn-icon"><i data-lucide="more-horizontal"></i></button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="modern-table" id="timetable-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Course</th>
+                                    <th>Room</th>
+                                    <th>Instructor</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="searchable-item">
+                                    <td>09:00 - 10:30</td>
+                                    <td class="course-name">Data Structures (CS201)</td>
+                                    <td>Room 304</td>
+                                    <td>Dr. Smith</td>
+                                    <td><span class="status-badge success">Ongoing</span></td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td>11:00 - 12:30</td>
+                                    <td class="course-name">Web Services (CS305)</td>
+                                    <td>Lab 2</td>
+                                    <td>Prof. Davis</td>
+                                    <td><span class="status-badge pending">Upcoming</span></td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td>14:00 - 15:30</td>
+                                    <td class="course-name">Database Systems (CS202)</td>
+                                    <td>Room 101</td>
+                                    <td>Dr. Johnson</td>
+                                    <td><span class="status-badge pending">Upcoming</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Quick Services -->
+                <section class="card bento-item searchable-section" data-title="Services">
+                    <div class="card-header">
+                        <h2>Quick Services</h2>
+                    </div>
+                    <div class="quick-services-grid" id="services-grid">
+                        <button class="service-btn searchable-item"><i data-lucide="user-check"></i> <span>Attendance</span></button>
+                        <button class="service-btn searchable-item"><i data-lucide="file-signature"></i> <span>Registration</span></button>
+                        <button class="service-btn searchable-item"><i data-lucide="credit-card"></i> <span>Fee Payment</span></button>
+                        <button class="service-btn searchable-item"><i data-lucide="scroll"></i> <span>Transcript</span></button>
+                        <button class="service-btn searchable-item"><i data-lucide="library"></i> <span>Library</span></button>
+                        <button class="service-btn searchable-item"><i data-lucide="calendar-clock"></i> <span>Timetable</span></button>
+                    </div>
+                </section>
+
+                <!-- Recent Announcements (Expand/Collapse) -->
+                <section class="card bento-item searchable-section" data-title="Announcements">
+                    <div class="card-header">
+                        <h2>Recent Announcements</h2>
+                        <button class="btn btn-ghost btn-sm" id="toggle-announcements">Collapse All</button>
+                    </div>
+                    <div class="announcements-list" id="announcements-container">
+                        <div class="accordion-item expanded searchable-item">
+                            <button class="accordion-header">
+                                <span class="announcement-title">Midterm Exam Schedule Released</span>
+                                <i data-lucide="chevron-down" class="chevron"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p>The midterm examination schedule for Fall semester has been published. Please check the portal for your personal timetable. Make sure to report any clashes by Friday.</p>
+                                <span class="caption date-stamp">Posted 2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="accordion-item searchable-item">
+                            <button class="accordion-header">
+                                <span class="announcement-title">Library Maintenance Notice</span>
+                                <i data-lucide="chevron-down" class="chevron"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p>The central library online services will be down for maintenance this weekend from Saturday 10:00 PM to Sunday 6:00 AM.</p>
+                                <span class="caption date-stamp">Posted 1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Assignments (Replaced Events for Lab 2) -->
+                <section class="card bento-item searchable-section" data-title="Assignments">
+                    <div class="card-header">
+                        <h2>Assignments</h2>
+                        <div class="filter-group">
+                            <button class="btn btn-ghost btn-sm" id="filter-all">All</button>
+                            <button class="btn btn-ghost btn-sm" id="filter-completed">Completed</button>
+                            <button class="btn btn-ghost btn-sm" id="filter-pending">Pending</button>
+                        </div>
+                    </div>
+                    <div class="events-list" id="assignments-container">
+                        <!-- Data will be injected here via API -->
+                        <div style="padding: 1rem; color: var(--text-secondary);">Loading assignments...</div>
+                    </div>
+                </section>
+
+
+            </div>
+            </div><!-- End Dashboard View -->
+            
+            <!-- Other Views -->
+            <div id="view-home" class="view-section hidden">
+                <section class="welcome-section fade-in">
+                    <div class="welcome-text"><h1 class="page-title">Home</h1><p class="caption">Welcome to your university feed.</p></div>
+                </section>
+                <div class="card bento-item fade-in" style="margin-top:2rem; padding: 2rem; text-align: center; color: var(--text-secondary);">
+                    <i data-lucide="home" style="width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <p>Your personal university feed will appear here.</p>
+                </div>
+            </div>
+
+            <div id="view-services" class="view-section hidden">
+                <section class="welcome-section fade-in">
+                    <div class="welcome-text"><h1 class="page-title">All Services</h1><p class="caption">Access campus facilities and academic resources.</p></div>
+                </section>
+                <div class="card bento-item fade-in" style="margin-top:2rem; padding: 2rem; text-align: center; color: var(--text-secondary);">
+                    <i data-lucide="layers" style="width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <p>Service portal is currently loading...</p>
+                </div>
+            </div>
+
+            <div id="view-notifications" class="view-section hidden">
+                <section class="welcome-section fade-in">
+                    <div class="welcome-text"><h1 class="page-title">Notifications</h1><p class="caption">You have 3 unread alerts.</p></div>
+                </section>
+                <div class="card bento-item fade-in" style="margin-top:2rem; padding: 2rem; text-align: center; color: var(--text-secondary);">
+                    <i data-lucide="bell" style="width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <p>No new notifications today.</p>
+                </div>
+            </div>
+
+            <div id="view-profile" class="view-section hidden">
+                <section class="welcome-section fade-in">
+                    <div class="welcome-text"><h1 class="page-title">Student Profile</h1><p class="caption">Manage your personal information.</p></div>
+                </section>
+                <div class="card bento-item fade-in" style="margin-top:2rem; padding: 2rem; text-align: center; color: var(--text-secondary);">
+                    <i data-lucide="user" style="width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <p>Profile management system is syncing...</p>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-links">
+                <a href="#">Contact</a>
+                <a href="#">Help Desk</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p class="caption">&copy; 2026 CampusConnect. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <!-- Icons Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    
+    <!-- Main Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.git
+.idea
+Dockerfile
+.dockerignore
+compose.yaml
+docker-compose.yml
+.DS_Store
